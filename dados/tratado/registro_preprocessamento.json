@@ -1,0 +1,122 @@
+{
+  "limpeza": [
+    {
+      "acao": "Procura de valores nulos",
+      "linhas_antes": 110527,
+      "linhas_depois": 110527,
+      "linhas_afetadas": 0,
+      "detalhe": "0 valores nulos encontrados. Nada a preencher ou remover."
+    },
+    {
+      "acao": "Remoção de agendamentos duplicados",
+      "linhas_antes": 110527,
+      "linhas_depois": 109909,
+      "linhas_afetadas": 618,
+      "detalhe": "Mesmo paciente, mesmos horários e mesmos dados, mudando só o id da consulta (registro feito duas vezes no mesmo segundo)."
+    },
+    {
+      "acao": "Remoção de idade negativa",
+      "linhas_antes": 109909,
+      "linhas_depois": 109908,
+      "linhas_afetadas": 1,
+      "detalhe": "Idade -1 não existe."
+    },
+    {
+      "acao": "Remoção de idade acima de 110 anos",
+      "linhas_antes": 109908,
+      "linhas_depois": 109904,
+      "linhas_afetadas": 4,
+      "detalhe": "Registros com 115 anos, tratados como erro de digitação."
+    },
+    {
+      "acao": "Remoção de consultas anteriores ao agendamento",
+      "linhas_antes": 109904,
+      "linhas_depois": 109899,
+      "linhas_afetadas": 5,
+      "detalhe": "Antecedência negativa é impossível."
+    }
+  ],
+  "transformacao": [
+    {
+      "acao": "Datas de texto convertidas para data",
+      "linhas_antes": 109904,
+      "linhas_depois": 109904,
+      "linhas_afetadas": 0,
+      "detalhe": "Agendamento mantém data e hora; consulta fica só com a data, porque a base não traz o horário."
+    },
+    {
+      "acao": "Coluna No-show traduzida",
+      "linhas_antes": 109899,
+      "linhas_depois": 109899,
+      "linhas_afetadas": 0,
+      "detalhe": "Na origem, 'Yes' quer dizer que o paciente FALTOU. Viraram 'faltou' (1/0) e 'situacao' (Faltou/Compareceu) para não haver dúvida."
+    },
+    {
+      "acao": "Código do paciente corrigido",
+      "linhas_antes": 109899,
+      "linhas_depois": 109899,
+      "linhas_afetadas": 0,
+      "detalhe": "5 códigos tinham casas decimais. Sem a parte decimal, o número de pacientes distintos continua 62296 (62296 depois), então nenhum paciente foi misturado."
+    },
+    {
+      "acao": "Padronização de códigos e textos",
+      "linhas_antes": 109899,
+      "linhas_depois": 109899,
+      "linhas_afetadas": 0,
+      "detalhe": "Sexo F/M por extenso, 0/1 virou Não/Sim, bairros com grafia de título e grau de deficiência (0 a 4) resumido em Sim/Não, mantendo o grau original."
+    },
+    {
+      "acao": "Novas colunas criadas",
+      "linhas_antes": 109899,
+      "linhas_depois": 109899,
+      "linhas_afetadas": 0,
+      "detalhe": "antecedencia_dias, faixa_antecedencia, dia_semana, hora_agendamento, faixa_etaria, sms_possivel (consulta marcada com 3 dias ou mais), faltas_anteriores e ja_faltou_antes."
+    }
+  ],
+  "reducao": [
+    {
+      "acao": "Retirada do sábado isolado",
+      "linhas_antes": 109899,
+      "linhas_depois": 109860,
+      "linhas_afetadas": 39,
+      "detalhe": "Só um sábado (14/05/2016) teve consultas, e foram poucas. Fora do padrão de segunda a sexta, ele distorceria a comparação por dia da semana."
+    },
+    {
+      "acao": "Retirada de bairros com menos de 30 consultas",
+      "linhas_antes": 109860,
+      "linhas_depois": 109839,
+      "linhas_afetadas": 21,
+      "detalhe": "Volume pequeno demais para uma taxa de faltas confiável: Aeroporto, Ilha do Frade, Ilhas Oceânicas de Trindade, Parque Industrial."
+    },
+    {
+      "acao": "Colunas finais selecionadas",
+      "linhas_antes": 109839,
+      "linhas_depois": 109839,
+      "linhas_afetadas": 0,
+      "detalhe": "24 colunas: as 14 originais tratadas e as novas colunas de análise."
+    }
+  ],
+  "linhas_originais": 110527,
+  "colunas_originais": [
+    "PatientId",
+    "AppointmentID",
+    "Gender",
+    "ScheduledDay",
+    "AppointmentDay",
+    "Age",
+    "Neighbourhood",
+    "Scholarship",
+    "Hipertension",
+    "Diabetes",
+    "Alcoholism",
+    "Handcap",
+    "SMS_received",
+    "No-show"
+  ],
+  "linhas_finais": 109839,
+  "periodo": [
+    "2016-04-29",
+    "2016-06-08"
+  ],
+  "taxa_faltas_final": 20.11
+}
