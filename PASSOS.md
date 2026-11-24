@@ -124,7 +124,7 @@ De **110.527** para **109.839** consultas.
 **Onde está:** `app.py`. Para abrir: `streamlit run app.py`.
 
 **Interatividade (o critério que zera a nota):**
-- 11 filtros na lateral, que se combinam;
+- 9 filtros na lateral, que se combinam, e um controle de mínimo de consultas no gráfico de bairros;
 - clicar numa barra ou ponto filtra todos os outros gráficos (filtro cruzado), e os cliques se
   somam aos filtros da lateral;
 - uma faixa no topo mostra o que está selecionado, com um botão para limpar.
@@ -147,7 +147,7 @@ para o grupo de comparação. Barra clicada fica escura e as outras ficam apagad
 
 ---
 
-## 6. Diagnóstico e plano de ação (seção 6 do relatório) 🔄
+## 6. Diagnóstico e plano de ação (seção 6 do relatório) ✅
 
 O painel já calcula isso no fim da página para qualquer recorte. Na base inteira:
 
@@ -171,52 +171,48 @@ O painel já calcula isso no fim da página para qualquer recorte. Na base intei
 3. Lista de atenção com os pacientes que já faltaram antes, com ligação de confirmação.
 4. Busca ativa pelos agentes comunitários nos bairros com mais faltas.
 
-**Falta fazer:** escolher a "anomalia" principal para o relatório (sugestão: o paradoxo do SMS)
-e escrever o texto com esses números.
+**Anomalia escolhida para o relatório:** o paradoxo do SMS (seção 6.1).
 
 ---
 
-## 7. Relatório ⬜
+## 7. Relatório ✅
 
-Seguir exatamente o modelo do enunciado:
-- **Capa:** curso, disciplina, os cinco nomes e uma frase de Einstein, como pede o modelo.
-  Sugestão: "A imaginação é mais importante que o conhecimento", de uma entrevista ao *The Saturday
-  Evening Post* em 1929. Antes de usar, conferir a fonte, porque há muitas frases falsamente
-  atribuídas a ele.
-- **1. Definição do problema:** a dor (horário perdido, fila), as decisões que o painel apoia e
-  a decisão possível com cada gráfico (tabela do passo 5).
-- **2. Metadados:** resumo de `docs/metadados.md`.
-- **3. Pré-processamento:** o passo 4, com os números.
-- **4. Dashboard:** capturas do painel com filtros combinados, por exemplo antecedência
-  "8 a 15 dias" e bairro Itararé.
-- **5. Justificativa visual:** a tabela do passo 5.
-- **6. Diagnóstico e plano de ação:** o passo 6.
+**Arquivo:** [relatorio/Relatorio_Painel_BI_Faltas_Consultas.docx](relatorio/Relatorio_Painel_BI_Faltas_Consultas.docx)
+(e o PDF ao lado), gerado por `src/relatorio.py` em formato de documento Word comum, com 12 páginas. Segue o modelo do
+enunciado: capa, sumário, seções 1 a 6, considerações finais e referências.
+
+- **Capa:** universidade, curso, disciplina, professor, equipe com matrículas e a frase de Einstein ("A imaginação é
+  mais importante que o conhecimento...", entrevista ao *The Saturday Evening Post*, 1929).
+- **Seção 4:** capturas reais do painel sem filtro e com filtros combinados (Itararé + 8 a 15 dias).
+- Os dados da capa ficam em `apresentacao/identificacao.json`. Depois de mudar, rodar `python src/relatorio.py`
+  e `node apresentacao/build.js` de novo.
+
+**Pendente:** conferir o nome do Ian na equipe (Ian Waki ou Ian Sampaio).
 
 ---
 
-## 8. Slides ⬜
+## 8. Slides ✅
 
-Baseados no relatório, curtos e visuais: equipe → problema → base e tratamento → o painel →
-diagnóstico → plano de ação. Depois dos slides, abrir o painel ao vivo.
+**Arquivo:** [apresentacao/Apresentacao_Painel_BI_Faltas_Consultas.pptx](apresentacao/Apresentacao_Painel_BI_Faltas_Consultas.pptx)
+e o PDF ao lado, gerados por `apresentacao/build.js` (10 slides, com notas). Mesmo visual da apresentação do SUS.
+
+Sequência: capa com a equipe → problema e base (com as colunas) → limpeza e tratamento dos dados → painel com filtros combinados →
+justificativa visual → diagnóstico → anomalia do SMS → plano de ação → valor para o negócio → obrigado. A demonstração ao vivo
+acontece entre os slides 9 e 10.
 
 ---
 
 ## 9. Ensaio da demonstração ⬜
 
-Roteiro sugerido, de 3 a 4 minutos, mostrando a decisão sendo tomada:
-1. Mostrar os indicadores gerais: 20,1% de faltas.
-2. Clicar em "8 a 15 dias" no gráfico de antecedência e mostrar a taxa subir para cerca de 31%.
-3. Mostrar no gráfico do SMS que, nessa faixa, quem recebe SMS falta menos.
-4. Filtrar um bairro crítico (ex.: Itararé) e mostrar o diagnóstico mudando no fim da página.
-5. Fechar com o plano de ação.
-
-Testar antes num computador sem internet: o painel roda local, só precisa do Python instalado.
+Roteiro de fala, divisão sugerida entre os cinco, passos da demonstração e perguntas prováveis:
+[GUIA_APRESENTACAO.md](GUIA_APRESENTACAO.md). Falta ensaiar com o grupo e testar o painel no computador da
+apresentação.
 
 ---
 
 ## 10. Entrega ⬜
 
-- [ ] Relatório no AVA
-- [ ] Slides no AVA
-- [ ] Nomes dos cinco integrantes no relatório e nos slides
+- [x] Nome do professor e da disciplina na capa e nos slides
+- [ ] Relatório (PDF) no AVA
+- [ ] Slides (PPTX ou PDF) no AVA
 - [ ] Painel testado no computador da apresentação

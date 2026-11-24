@@ -33,9 +33,24 @@ A base tratada já vem no repositório, então dá para pular direto para o `str
 - **Filtros da lateral:** período, bairro, antecedência, idade, sexo, SMS, Bolsa Família,
   histórico de faltas e condições de saúde. Eles se combinam.
 - **Clique nos gráficos:** clicar numa barra ou ponto filtra todos os outros gráficos.
-  Segure Shift para escolher mais de um item. O botão "Limpar seleções dos gráficos" desfaz.
+  Segure Shift para escolher mais de um item. O botão "Limpar seleções" desfaz.
 - **Diagnóstico e plano de ação:** no fim da página, os números e as recomendações se
   recalculam para o recorte escolhido.
+
+## Relatório e slides
+
+Os números do relatório e dos slides vêm da mesma base do painel:
+
+```bash
+python src/dados_apresentacao.py   # junta os números em apresentacao/dados.json
+python src/capturas.py             # capturas do painel (precisa do painel aberto e do Playwright)
+python src/relatorio.py            # gera relatorio/Relatorio_Painel_BI_Faltas_Consultas.docx
+cd apresentacao && npm install && node build.js   # gera os slides (.pptx)
+```
+
+O PDF do relatório sai do Word (Salvar como PDF) ou do LibreOffice:
+`soffice --headless --convert-to pdf --outdir relatorio relatorio/Relatorio_Painel_BI_Faltas_Consultas.docx`.
+O Playwright (`pip install playwright && playwright install chromium`) só é necessário para as capturas de tela.
 
 ## Pastas
 
@@ -46,7 +61,14 @@ src/gerar_metadados.py      gera o dicionário de dados
 dados/bruto/                base original e de onde ela veio (FONTE.md)
 dados/tratado/              base pronta para o painel e o registro do tratamento
 docs/metadados.md           dicionário de dados (seção 2 do relatório)
+src/dados_apresentacao.py   números do relatório e dos slides
+src/capturas.py             capturas de tela do painel
+src/relatorio.py            gera o relatório em Word (.docx)
+figuras/                    capturas do painel usadas no relatório e nos slides
+relatorio/                  relatório final (.docx e .pdf)
+apresentacao/               slides (build.js gera o .pptx) e os dados da capa
 PASSOS.md                   roteiro do projeto, do enunciado até a entrega
+GUIA_APRESENTACAO.md        roteiro de fala e da demonstração ao vivo
 ```
 
 ## Fonte dos dados

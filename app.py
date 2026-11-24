@@ -7,7 +7,7 @@ Como a interatividade funciona:
 - Os filtros da barra lateral valem para o painel inteiro.
 - Clicar numa barra ou num ponto também filtra: o item clicado passa a filtrar todos os
   OUTROS gráficos (filtro cruzado). Dá para clicar em vários gráficos e combinar tudo.
-- O botão "Limpar seleções dos gráficos" desfaz os cliques. Os filtros laterais têm o seu.
+- O botão "Limpar seleções" desfaz os cliques. Os filtros laterais têm o seu.
 """
 
 import json
@@ -238,10 +238,10 @@ for chave in GRAFICOS_CLICAVEIS:
         nome = coluna.replace("_", " ").replace("data txt", "data")
         ativos.append(f"{nome}: {', '.join(sorted(map(str, valores)))}")
 if ativos:
-    c1, c2 = st.columns([5, 1])
+    c1, c2 = st.columns([4, 1])
     c1.markdown("**Seleções nos gráficos:** " + "".join(f'<span class="chip">{a}</span>' for a in ativos),
                 unsafe_allow_html=True)
-    c2.button("Limpar seleções dos gráficos", on_click=limpar_cliques, use_container_width=True)
+    c2.button("Limpar seleções", on_click=limpar_cliques, use_container_width=True)
 
 if df_sel.empty:
     st.warning("Nenhuma consulta com essa combinação de filtros. Tente afrouxar algum filtro.")
@@ -253,8 +253,10 @@ elegiveis = df_sel[df_sel["sms_possivel"] == "Sim"]
 k1, k2, k3, k4, k5 = st.columns(5)
 k1.metric("Consultas", num(len(df_sel)))
 k2.metric("Faltas", num(df_sel["faltou"].sum()))
+diferenca = (taxa_sel - taxa_geral) * 100
+# Sem filtro (ou com diferença desprezível) não há o que comparar, então a seta não aparece.
 k3.metric("Taxa de faltas", pct(taxa_sel),
-          delta=f"{(taxa_sel - taxa_geral) * 100:+.1f}".replace(".", ",") + " p.p. em relação ao geral",
+          delta=(f"{diferenca:+.1f}".replace(".", ",") + " p.p. vs. geral") if abs(diferenca) >= 0.05 else None,
           delta_color="inverse")
 k4.metric("Pacientes", num(df_sel["id_paciente"].nunique()))
 k5.metric("Lembrete por SMS", pct((elegiveis["recebeu_sms"] == "Sim").mean()) if len(elegiveis) else "–",
@@ -330,7 +332,7 @@ with esq:
         hovertemplate="%{x|%d/%m (%a)}<br>Taxa de faltas: %{y:.1%}<extra></extra>",
     )
     fig.add_hline(y=media, line_dash="dot", line_color=CINZA,
-                  annotation_text=f"média {pct(media)}", annotation_position="top left")
+                  annotation_text=f"média {pct(media)}", annotation_position="bottom left")
     fig = layout_padrao(
         fig, altura=340,
         yaxis=dict(tickformat=".0%", title="Taxa de faltas", rangemode="tozero"),
@@ -367,9 +369,14 @@ with esq:
                        key="f_minimo_bairro")
     base = aplicar_cliques(df_lateral, menos="g_bairro")
     tabela = taxa_por(base, "bairro")
-    tabela = tabela[tabela["consultas"] >= minimo].sort_values("taxa", ascending=False).head(15)
+    if not tabela.empty and (tabela["consultas"] < minimo).all():
+        # Recorte pequeno (ex.: um bairro só): em vez de deixar o gráfico vazio, mostra o que existe.
+        st.caption(f"Nenhum bairro chega a {num(minimo)} consultas neste recorte; mostrando todos.")
+    else:
+        tabela = tabela[tabela["consultas"] >= minimo]
+    tabela = tabela.sort_values("taxa", ascending=False).head(15)
     if tabela.empty:
-        st.info("Nenhum bairro tem esse volume de consultas com os filtros atuais. Diminua o mínimo.")
+        st.info("Nenhum bairro com os filtros atuais.")
     else:
         tabela = tabela.iloc[::-1]
         escolhidos = selecoes_do_grafico("g_bairro").get("bairro", set())
@@ -381,10 +388,11 @@ with esq:
             customdata=[["bairro", b] for b in tabela["bairro"]],
             hovertemplate="%{y}<br>Taxa de faltas: %{x:.1%}<extra></extra>",
         ))
-        fig.add_vline(x=taxa_geral, line_dash="dot", line_color=CINZA,
-                      annotation_text=f"geral {pct(taxa_geral)}", annotation_position="bottom right")
-        fig = layout_padrao(fig, altura=max(320, 28 * len(tabela) + 60),
-                            xaxis=dict(tickformat=".0%", range=[0, tabela["taxa"].max() * 1.3]))
+        # A linha pontilhada é a taxa geral; a explicação vai no eixo para não cobrir as barras.
+        fig.add_vline(x=taxa_geral, line_dash="dot", line_color=CINZA)
+        fig = layout_padrao(fig, altura=max(200, 28 * len(tabela) + 90),
+                            xaxis=dict(tickformat=".0%", range=[0, tabela["taxa"].max() * 1.3],
+                                       title=f"Taxa de faltas · linha pontilhada = taxa geral ({pct(taxa_geral)})"))
         mostrar(fig, "g_bairro")
     decisao("onde concentrar busca ativa e confirmação por telefone. Entre parênteses, o número de consultas do bairro.")
 

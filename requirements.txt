@@ -2,3 +2,4 @@ pandas==3.1.1
 pyarrow
 streamlit==1.67.0
 plotly==7.1.0
+python-docx==1.2.0

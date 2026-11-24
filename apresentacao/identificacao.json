@@ -1,0 +1,30 @@
+{
+  "curso": "Ciência da Computação",
+  "disciplina": "Gerência da Implantação de Sistemas",
+  "professor": "Alan Carlos Lima Bandeira",
+  "local_data": "Fortaleza, novembro de 2026",
+  "equipe": [
+    [
+      "Davi Salgueiro",
+      "2315072"
+    ],
+    [
+      "Diego Benevides",
+      "2310381"
+    ],
+    [
+      "Eduardo Jorge",
+      "2310384"
+    ],
+    [
+      "Ian Waki",
+      "2310398"
+    ],
+    [
+      "Larissa Elias",
+      "2315032"
+    ]
+  ],
+  "frase": "A imaginação é mais importante que o conhecimento. O conhecimento é limitado. A imaginação envolve o mundo.",
+  "frase_fonte": "Albert Einstein, em entrevista a George Sylvester Viereck, The Saturday Evening Post, 26 out. 1929"
+}
