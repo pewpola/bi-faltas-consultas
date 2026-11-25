@@ -422,8 +422,9 @@ def secao_3(doc):
 def secao_4(doc):
     combo = D["combo_exemplo"]
     doc.add_heading("4. Dashboard interativo", level=1)
-    paragrafo(doc, "O painel foi desenvolvido em Python com as bibliotecas Streamlit e Plotly e é aberto no navegador "
-              "com o comando streamlit run app.py. Ele oferece três formas de filtrar, que se combinam entre si:")
+    paragrafo(doc, "O painel foi desenvolvido em Python com as bibliotecas Streamlit e Plotly e está publicado no "
+              "Streamlit Community Cloud, em https://bi-faltas-consultas.streamlit.app/. Também pode ser aberto localmente com o comando "
+              "streamlit run app.py. Ele oferece três formas de filtrar, que se combinam entre si:")
     topicos(doc, [
         ("Filtros da lateral:", "período, bairro, antecedência, faixa etária, sexo, SMS, Bolsa Família, histórico de "
          "faltas e condição de saúde, além de um controle de mínimo de consultas no gráfico de bairros;"),

@@ -3,6 +3,8 @@
 Roteiro de fala, slide a slide, para a apresentação fluir sem leitura de slide. Tempo total previsto:
 **cerca de 11 minutos de slides e 4 minutos de painel ao vivo**.
 
+Painel publicado: **https://bi-faltas-consultas.streamlit.app/** (ou local, com `streamlit run app.py`, em http://localhost:8501).
+
 Arquivos: [apresentacao/Apresentacao_Painel_BI_Faltas_Consultas.pptx](apresentacao/Apresentacao_Painel_BI_Faltas_Consultas.pptx)
 (as notas de cada slide estão no próprio PowerPoint) e o PDF ao lado dele.
 
@@ -14,7 +16,7 @@ O número de cada slide aparece no topo dele, junto com o tema (ex.: "03 · Pré
 |---|---|---|---|
 | 1 | Capa e equipe | Eduardo | 0,5 min |
 | 2 | O problema e a base | Eduardo | 1,5 min |
-| 3 | Pré-processamento | Diego | 1,5 min |
+| 3 | Pré-processamento | Eduardo | 1,5 min |
 | 4 | Painel interativo | Diego | 1 min |
 | 5 | Justificativa visual | Davi | 1 min |
 | 6 | Diagnóstico | Davi | 1,5 min |
@@ -34,14 +36,14 @@ As três decisões que o painel apoia: lembrete, confirmação e prioridade. Fec
 reais e anonimizados de 2016, uma linha por consulta (quem, quando, onde, saúde, SMS e se faltou), escolhida por ter
 um problema real, muitas dimensões e sujeira de verdade para tratar. Alertar sobre o rótulo "No-show": "Yes" quer
 dizer que faltou.
-→ *Passa para o Diego:* "Antes de analisar, foi preciso limpar e tratar os dados. O Diego explica como."
+→ *Ligação:* "Antes de analisar, foi preciso limpar e tratar os dados."
 
-**Slide 3 · Pré-processamento (Diego).** Dizer que são dados estruturados: uma tabela, colunas fixas. Depois as três
+**Slide 3 · Pré-processamento (Eduardo).** Dizer que são dados estruturados: uma tabela, colunas fixas. Depois as três
 colunas do slide: limpeza (sem nulos, 618 duplicatas, idades impossíveis, consultas antes do agendamento),
 transformação (arquivo de CSV para Parquet, texto para data, No-show em 1/0, moedas não se aplicam, 9 colunas novas)
 e redução (sábado isolado, bairros pequenos e só as colunas úteis). Fechar: de 110.527 para 109.839 consultas, 0,6%
 das linhas retiradas, tudo registrado.
-→ *Ligação:* "Com a base limpa, construímos o painel."
+→ *Passa para o Diego:* "Com a base limpa, construímos o painel. O Diego mostra como ele funciona."
 
 **Slide 4 · Painel interativo (Diego).** "Todos os gráficos se filtram entre si." Mostrar na captura os dois filtros
 somados: Itararé na lateral e o clique em "8 a 15 dias". A taxa vai a 37,1%, e a falta com SMS fica em 33,0%, contra
@@ -83,10 +85,14 @@ deste slide.
 
 ## Antes de apresentar
 
-- [ ] Painel aberto no computador da apresentação (`streamlit run app.py`) e testado com os passos acima.
+- [ ] Painel aberto no computador da apresentação e testado com os passos acima: o link publicado
+  (https://bi-faltas-consultas.streamlit.app/) ou o local (`streamlit run app.py`).
+- [ ] Abrir o link publicado **alguns minutos antes**: depois de dias sem acesso, o Streamlit Cloud "dorme" e leva
+  cerca de 30 segundos para acordar.
 - [ ] Navegador com zoom em que os gráficos caibam na tela do projetor.
 - [ ] PowerPoint em modo apresentador, para ver as notas de cada slide.
-- [ ] Plano B: se o computador falhar, o slide 4 mostra a mesma demonstração em captura de tela.
+- [ ] Plano B: se a internet falhar, usar a versão local; se o computador falhar, o slide 4 mostra a mesma
+  demonstração em captura de tela.
 
 ## Perguntas prováveis
 

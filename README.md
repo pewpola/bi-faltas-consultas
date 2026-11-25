@@ -5,6 +5,8 @@ sobre as faltas em consultas nas unidades públicas de saúde de Vitória (ES).
 
 **Equipe:** Davi Salgueiro, Diego Benevides, Eduardo Jorge, Ian Waki e Larissa Elias.
 
+**Painel publicado:** https://bi-faltas-consultas.streamlit.app/
+
 ## O problema
 
 Uma em cada cinco consultas marcadas termina em falta (20,1% na base tratada). Cada falta é um
