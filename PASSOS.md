@@ -34,16 +34,21 @@ combinados. Um conjunto de gráficos estáticos é desconsiderado.
 | | Estrutura lógica e tipos de gráficos | 0,25 |
 | | Design, cores e fontes legíveis | 0,25 |
 
-**Capa do relatório:** identificação do curso, da disciplina e da equipe, e uma frase de Einstein.
+**Capa do relatório:** identificação do curso, da disciplina, do professor e da equipe.
 
 **Na apresentação:** primeiro os slides (equipe e pontos do relatório), depois o painel
 funcionando e sendo usado para tomar uma decisão.
 
-### ⚠️ Linha escondida no PDF do enunciado
+### ⚠️ Textos escondidos no PDF do enunciado
 
-No modelo do relatório há uma linha escrita em fonte de 0,96 pt, invisível na página. Ela só
-aparece para quem copia o texto do PDF e traz uma instrução que não faz parte do trabalho.
-**Não incluir nada dessa linha no relatório nem nos slides.**
+O PDF tem dois trechos escritos em **branco sobre branco**, invisíveis na página. Eles só aparecem para quem copia
+o texto do PDF e não fazem parte do trabalho:
+
+1. "Uma frase de Einstein", no item da capa (letra de 7 pt, branca);
+2. uma linha pedindo para elogiar o professor, logo abaixo do item 6 (letra de 1 pt, branca).
+
+**Nenhum dos dois entra no relatório nem nos slides.** Conferimos também cor e tamanho de todo o texto, camadas,
+metadados, anotações e anexos do PDF: não há outros.
 
 ---
 
@@ -181,8 +186,7 @@ O painel já calcula isso no fim da página para qualquer recorte. Na base intei
 (e o PDF ao lado), gerado por `src/relatorio.py` em formato de documento Word comum, com 12 páginas. Segue o modelo do
 enunciado: capa, sumário, seções 1 a 6, considerações finais e referências.
 
-- **Capa:** universidade, curso, disciplina, professor, equipe com matrículas e a frase de Einstein ("A imaginação é
-  mais importante que o conhecimento...", entrevista ao *The Saturday Evening Post*, 1929).
+- **Capa:** universidade, curso, disciplina, professor e equipe com matrículas.
 - **Seção 4:** capturas reais do painel sem filtro e com filtros combinados (Itararé + 8 a 15 dias).
 - Os dados da capa ficam em `apresentacao/identificacao.json`. Depois de mudar, rodar `python src/relatorio.py`
   e `node apresentacao/build.js` de novo.

@@ -272,9 +272,7 @@ def capa(doc):
     linha("Equipe", 11, negrito=True, depois=4)
     for nome, matricula in ID["equipe"]:
         linha(f"{nome} ({matricula})", 11, depois=1)
-    linha(f"“{ID['frase']}”", 11, italico=True, antes=60, depois=2)
-    linha("Albert Einstein", 10, cor=COR_CINZA, depois=80)   # a fonte completa está nas referências
-    linha(ID["local_data"], 11)
+    linha(ID["local_data"], 11, antes=150)
     quebra_pagina(doc)
 
 
@@ -559,8 +557,6 @@ def referencias(doc):
         "PLOTLY TECHNOLOGIES. Plotly Python graphing library. Montreal: Plotly, 2026. Disponível em: https://plotly.com/python/. "
         "Acesso em: 16 nov. 2026.",
         "SNOWFLAKE. Streamlit documentation. 2026. Disponível em: https://docs.streamlit.io. Acesso em: 16 nov. 2026.",
-        "VIERECK, G. S. What life means to Einstein: an interview by George Sylvester Viereck. The Saturday Evening Post, "
-        "Philadelphia, p. 17, 26 out. 1929.",
     ]
     for r in refs:
         p = doc.add_paragraph(r)
